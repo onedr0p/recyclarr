@@ -5,7 +5,7 @@ using Recyclarr.Cli.Pipelines.CustomFormat.PipelinePhases;
 using Recyclarr.Tests.TestLibrary;
 using Recyclarr.TrashGuide.CustomFormat;
 
-namespace Recyclarr.Cli.IntegrationTests;
+namespace Recyclarr.Cli.IntegrationTests.Tests;
 
 [TestFixture]
 internal class CustomFormatTransactionPhaseTest : CliIntegrationFixture

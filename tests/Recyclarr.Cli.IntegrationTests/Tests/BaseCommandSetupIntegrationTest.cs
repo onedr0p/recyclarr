@@ -1,9 +1,8 @@
 using System.IO.Abstractions;
 using Recyclarr.Cli.Console.Setup;
 using Recyclarr.Settings;
-using Recyclarr.TestLibrary;
 
-namespace Recyclarr.Cli.IntegrationTests;
+namespace Recyclarr.Cli.IntegrationTests.Tests;
 
 [TestFixture]
 internal class BaseCommandSetupIntegrationTest : CliIntegrationFixture

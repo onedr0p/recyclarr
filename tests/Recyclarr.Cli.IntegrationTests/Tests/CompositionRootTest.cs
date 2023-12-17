@@ -8,7 +8,7 @@ using Recyclarr.TestLibrary.Autofac;
 using Serilog.Core;
 using Spectre.Console;
 
-namespace Recyclarr.Cli.IntegrationTests;
+namespace Recyclarr.Cli.IntegrationTests.Tests;
 
 [TestFixture]
 public class CompositionRootTest

@@ -2,7 +2,7 @@ using System.IO.Abstractions;
 using Recyclarr.Cli.Processors.Config;
 using Recyclarr.Common.Extensions;
 
-namespace Recyclarr.Cli.IntegrationTests;
+namespace Recyclarr.Cli.IntegrationTests.Tests;
 
 [TestFixture]
 internal class ConfigManipulatorTest : CliIntegrationFixture
