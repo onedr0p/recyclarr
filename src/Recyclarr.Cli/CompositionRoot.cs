@@ -100,7 +100,6 @@ public static class CompositionRoot
     private static void CommandRegistrations(ContainerBuilder builder)
     {
         builder.RegisterTypes(
-                typeof(AppPathSetupTask),
                 typeof(JanitorCleanupTask))
             .As<IBaseCommandSetupTask>()
             .OrderByRegistration();

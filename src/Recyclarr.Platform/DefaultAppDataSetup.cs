@@ -1,8 +1,10 @@
 using System.IO.Abstractions;
+using Serilog;
 
 namespace Recyclarr.Platform;
 
 public class DefaultAppDataSetup(
+    ILogger log,
     IEnvironment env,
     IFileSystem fs,
     IRuntimeInformation runtimeInfo)
@@ -10,7 +12,17 @@ public class DefaultAppDataSetup(
     public IAppPaths CreateAppPaths(string? appDataDirectoryOverride = null)
     {
         var appDir = GetAppDataDirectory(appDataDirectoryOverride);
-        return new AppPaths(fs.DirectoryInfo.New(appDir));
+        var paths = new AppPaths(fs.DirectoryInfo.New(appDir));
+
+        log.Debug("App Data Dir: {AppData}", paths.AppDataDirectory);
+
+        // Initialize other directories used throughout the application
+        // Do not initialize the repo directory here; the GitRepositoryFactory handles that later.
+        paths.CacheDirectory.Create();
+        paths.LogDirectory.Create();
+        paths.ConfigsDirectory.Create();
+
+        return paths;
     }
 
     private string GetAppDataDirectory(string? appDataDirectoryOverride)
