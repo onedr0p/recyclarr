@@ -5,11 +5,13 @@ namespace Recyclarr.Platform;
 public class DefaultAppDataSetup(
     IEnvironment env,
     IFileSystem fs,
-    IRuntimeInformation runtimeInfo)
+    IRuntimeInformation runtimeInfo) : IAppDataSetup
 {
-    public IAppPaths CreateAppPaths(string? appDataDirectoryOverride = null)
+    public string? AppDataDirectoryOverride { get; set; }
+
+    public IAppPaths CreateAppPaths()
     {
-        var appDir = GetAppDataDirectory(appDataDirectoryOverride);
+        var appDir = GetAppDataDirectory(AppDataDirectoryOverride);
         return new AppPaths(fs.DirectoryInfo.New(appDir));
     }
 
