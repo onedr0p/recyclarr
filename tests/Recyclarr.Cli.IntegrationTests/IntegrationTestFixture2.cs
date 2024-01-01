@@ -3,6 +3,7 @@ using Autofac;
 using Autofac.Features.ResolveAnything;
 using Recyclarr.Compatibility;
 using Recyclarr.Platform;
+using Recyclarr.Repo;
 using Recyclarr.TestLibrary;
 using Recyclarr.TestLibrary.Autofac;
 using Recyclarr.VersionControl;
@@ -56,7 +57,7 @@ public abstract class IntegrationTestFixture2 : IDisposable
     {
         builder.RegisterType<StubEnvironment>().As<IEnvironment>();
 
-        builder.RegisterInstance(Fs).As<IFileSystem>();
+        builder.RegisterInstance(Fs).As<IFileSystem>().AsSelf();
         builder.RegisterInstance(Console).As<IAnsiConsole>();
         builder.RegisterInstance(Logger).As<ILogger>();
 
@@ -67,6 +68,8 @@ public abstract class IntegrationTestFixture2 : IDisposable
             // By default, choose some extremely high number so that all the newest features are enabled.
             m.GetVersion(default!).ReturnsForAnyArgs(_ => new Version("99.0.0.0"));
         });
+
+        builder.RegisterDecorator<StubTrashRepoMetadataBuilder, IRepoMetadataBuilder>();
     }
 
     [TearDown]
