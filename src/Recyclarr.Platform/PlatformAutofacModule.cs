@@ -7,11 +7,6 @@ public class PlatformAutofacModule : Module
     protected override void Load(ContainerBuilder builder)
     {
         base.Load(builder);
-        RegisterAppPaths(builder);
-    }
-
-    private static void RegisterAppPaths(ContainerBuilder builder)
-    {
         builder.RegisterType<DefaultAppDataSetup>();
         builder.RegisterType<DefaultEnvironment>().As<IEnvironment>();
         builder.RegisterType<DefaultRuntimeInformation>().As<IRuntimeInformation>();

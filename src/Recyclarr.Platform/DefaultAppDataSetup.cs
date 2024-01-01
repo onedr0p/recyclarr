@@ -1,10 +1,9 @@
 using System.IO.Abstractions;
-using Serilog;
 
 namespace Recyclarr.Platform;
 
+// Do NOT inject ILogger here because it introduces a circular dependency. LoggerFactory depends on IAppPaths.
 public class DefaultAppDataSetup(
-    ILogger log,
     IEnvironment env,
     IFileSystem fs,
     IRuntimeInformation runtimeInfo)
@@ -13,8 +12,6 @@ public class DefaultAppDataSetup(
     {
         var appDir = GetAppDataDirectory(appDataDirectoryOverride);
         var paths = new AppPaths(fs.DirectoryInfo.New(appDir));
-
-        log.Debug("App Data Dir: {AppData}", paths.AppDataDirectory);
 
         // Initialize other directories used throughout the application
         // Do not initialize the repo directory here; the GitRepositoryFactory handles that later.

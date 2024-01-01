@@ -82,6 +82,9 @@ internal static class Program
         _log = _scope.Resolve<ILogger>();
         _log.Debug("Recyclarr Version: {Version}", GitVersionInformation.InformationalVersion);
 
+        var paths = _scope.Resolve<IAppPaths>();
+        _log.Debug("App Data Dir: {AppData}", paths.AppDataDirectory);
+
         _tasks = _scope.Resolve<IOrderedEnumerable<IBaseCommandSetupTask>>().ToArray();
         _tasks.ForEach(x => x.OnStart());
     }

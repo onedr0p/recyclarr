@@ -14,6 +14,7 @@ namespace Recyclarr.Cli.IntegrationTests;
 public abstract class IntegrationTestFixture2 : IDisposable
 {
     private readonly Lazy<ILifetimeScope> _container;
+
     protected ILifetimeScope Container => _container.Value;
     protected MockFileSystem Fs { get; }
     protected TestConsole Console { get; } = new();
