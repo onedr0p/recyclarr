@@ -63,7 +63,7 @@ public abstract class IntegrationTestFixture : IDisposable
         builder.RegisterModule<GuideAutofacModule>();
         builder.RegisterModule<YamlAutofacModule>();
         builder.RegisterModule<SettingsAutofacModule>();
-        builder.RegisterModule<ApiServicesAutofacModule>();
+        builder.RegisterModule<ServarrApiAutofacModule>();
         builder.RegisterModule<VersionControlAutofacModule>();
         builder.RegisterModule<RepoAutofacModule>();
         builder.RegisterModule<CompatibilityAutofacModule>();

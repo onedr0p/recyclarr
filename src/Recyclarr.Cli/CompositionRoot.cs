@@ -17,7 +17,9 @@ using Recyclarr.Cli.Processors;
 using Recyclarr.Common;
 using Recyclarr.Compatibility;
 using Recyclarr.Config;
+using Recyclarr.Http;
 using Recyclarr.Json;
+using Recyclarr.Notifications;
 using Recyclarr.Platform;
 using Recyclarr.Repo;
 using Recyclarr.ServarrApi;
@@ -48,13 +50,15 @@ public static class CompositionRoot
         builder.RegisterModule<ServiceProcessorsAutofacModule>();
         builder.RegisterModule<CacheAutofacModule>();
         builder.RegisterModule<SettingsAutofacModule>();
-        builder.RegisterModule<ApiServicesAutofacModule>();
+        builder.RegisterModule<HttpAutofacModule>();
+        builder.RegisterModule<ServarrApiAutofacModule>();
         builder.RegisterModule<VersionControlAutofacModule>();
         builder.RegisterModule<RepoAutofacModule>();
         builder.RegisterModule<CompatibilityAutofacModule>();
         builder.RegisterModule<JsonAutofacModule>();
         builder.RegisterModule<PlatformAutofacModule>();
         builder.RegisterModule<CommonAutofacModule>();
+        builder.RegisterModule<NotificationsAutofacModule>();
 
         builder.RegisterType<FileSystem>().As<IFileSystem>();
         builder.Register(_ => new ResourceDataReader(thisAssembly)).As<IResourceDataReader>();
